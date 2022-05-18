@@ -11,6 +11,9 @@ type Book struct {
 	Price string
 }
 
+// https://stackoverflow.com/questions/1517582/what-is-the-difference-between-statically-typed-and-dynamically-typed-languages
+// https://gobyexample.com/structs
+
 func main() {
 	c := colly.NewCollector(
 		colly.AllowedDomains("books.toscrape.com"),
