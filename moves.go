@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"log"
+	"os"
 
 	"github.com/gocolly/colly"
 )
@@ -26,6 +28,11 @@ func main() {
 		fmt.Println(book.Title, book.Price)
 	})
 
+	// c.OnHTML(".next > a", func(e *colly.HTMLElement) {
+	// 	nextPage := e.Request.AbsoluteURL(e.Attr("href"))
+	// 	c.Visit(nextPage)
+	// })
+
 	c.OnResponse(func(r *colly.Response) {
 		fmt.Println(r.StatusCode)
 	})
@@ -35,6 +42,13 @@ func main() {
 	})
 
 	c.Visit("https://books.toscrape.com/")
+
+	file, err := os.Create("export.csv")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+
 }
 
 // func test() {
